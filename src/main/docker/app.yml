@@ -1,0 +1,14 @@
+version: '2'
+services:
+    springmicroservices-app:
+        image: springmicroservices
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://springmicroservices-mysql:3306/springmicroservices?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8054:8054
+    springmicroservices-mysql:
+        extends:
+            file: mysql.yml
+            service: springmicroservices-mysql
